@@ -15,17 +15,12 @@ def database():
 
 @app.route('/BLAST.html')
 def blast():
-    return render_template('top.html')
+    return render_template('BLAST.html')
 
 
 @app.route('/about.html')
 def about():
     return render_template('about.html')
-
-
-@app.route('/contact.html')
-def contact():
-    return render_template('contact.html')
 
 
 if __name__ == '__main__':
