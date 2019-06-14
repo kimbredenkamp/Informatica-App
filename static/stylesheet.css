@@ -101,3 +101,14 @@ h1, p {
     background-color: lightpink;
     padding: 2%;
 }
+
+th, td {
+    border: 2px solid lightpink;
+    text-align:left;
+}
+
+table {
+    border: 3px solid lightpink;
+    border-collapse: collapse;
+    color:white;
+}
