@@ -112,3 +112,7 @@ table {
     border-collapse: collapse; /**/
     color:white; /**/
 }
+
+.blast_results {
+    color: white
+}
