@@ -92,7 +92,6 @@ def blast():
             text = "Dit is geen geldige sequentie of accessiecode"
         except ValueError:
             text = "Geef een dna of rna sequentie"
-    text = 'dit is een test fl;dsajlkfda;jlfda'
     return render_template('BLAST.html', text=text)
 
 
