@@ -1,13 +1,13 @@
 body {
-  font-family: "Times New Roman", Times, serif;
-  background-color: dimgrey;
-    margin: 0;
+  font-family: "Times New Roman", Times, serif; /**/
+  background-color: dimgrey; /**/
+    margin: 0; /**/
 }
 
 .header_image {
   text-align: center; /* center the text */
   color: white; /* white text color */
-    font-size: 20px;
+    font-size: 20px; /**/
 }
 
 .navbar {
@@ -34,8 +34,8 @@ body {
 }
 
 .header_image img {
-    height: 100%;
-    width: 100%;
+    height: 100%; /**/
+    width: 100%; /**/
 }
 
 .header_image .content {
@@ -50,65 +50,65 @@ body {
 
 .text_content {
     text-align: center; /* paragraphs and headers in center*/
-    color: white;
+    color: white; /**/
 }
 
 .header_image2 img {
-    width: 100%;
+    width: 100%; /**/
 }
 
 .search_options {
-    color: white;
-    padding: 20px;
+    color: white; /**/
+    padding: 20px; /**/
 }
 
 /* Tooltip container */
 .tooltip {
-  position: relative;
-  display: inline-block;
+  position: relative; /**/
+  display: inline-block; /**/
   border-bottom: 1px dotted lightpink; /* If you want dots under the hoverable text */
 }
 
 /* Tooltip text */
 .tooltip .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: lightpink;
-  color: white;
-  text-align: center;
-  padding: 5px 0;
-  border-radius: 6px;
+  visibility: hidden; /**/
+  width: 120px; /**/
+  background-color: lightpink; /**/
+  color: white; /**/
+  text-align: center; /**/
+  padding: 5px 0; /**/
+  border-radius: 6px; /**/
 
   /* Position the tooltip text - see examples below! */
-  position: absolute;
-  z-index: 1;
+  position: absolute; /**/
+  z-index: 1; /**/
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
-  visibility: visible;
+  visibility: visible; /**/
 }
 
 h1, p {
-    color: white;
-    text-align: center;
+    color: white; /**/
+    text-align: center; /**/
 }
 
 .header_database {
       text-align: center; /* center the text */
   color: white; /* white text color */
-    font-size: 20px;
-    background-color: lightpink;
-    padding: 2%;
+    font-size: 20px; /**/
+    background-color: lightpink; /**/
+    padding: 2%; /**/
 }
 
 th, td {
-    border: 2px solid lightpink;
-    text-align:left;
+    border: 2px solid lightpink; /**/
+    text-align:left; /**/
 }
 
 table {
-    border: 3px solid lightpink;
-    border-collapse: collapse;
-    color:white;
+    border: 3px solid lightpink; /**/
+    border-collapse: collapse; /**/
+    color:white; /**/
 }
