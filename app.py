@@ -76,7 +76,7 @@ def database():
 @app.route('/BLAST.html', methods=['get', 'post'])
 def blast():
     param_sequentie = request.args.get('search_word')
-    text = 'fdsa'
+    text = ''
     if param_sequentie is not None:
         try:
             result_handle = NCBIWWW.qblast("blastx", "nr", param_sequentie, matrix_name="BLOSUM62", hitlist_size=75,
