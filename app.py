@@ -8,9 +8,9 @@ def home():
     return render_template('home.html')
 
 
-@app.route('/database.html')
+@app.route('/database.html', methods=['GET', 'POST'])
 def database():
-
+    
     return render_template('database.html')
 
 
