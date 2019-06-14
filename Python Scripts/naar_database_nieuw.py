@@ -46,7 +46,7 @@ def determining_taxonomy(dic_seq_hits):
     organism_id = 1
     total = 1
 
-    for key, hits in dic_seq_hits.items():
+    for hits in dic_seq_hits.values():
         for hit in hits:
             acc_code = hit[6]
             print(acc_code)
@@ -114,7 +114,7 @@ def determining_proteins(dic_seq_hits):
             proteins_erd, protein_id = save_proteins(proteins_erd, protein, protein_id)
             found = False
             for protein_entry in proteins_erd:
-                if protein_entry[1] == protein:
+                if protein_entry[1].lower() == protein.lower():
                     hit.append(protein_entry[0])
                     found = True
                     break
