@@ -41,8 +41,10 @@
             <input type="Submit">
         </form>
     </div>
-    <div class="results_table">
-                {{text}}
+    <div class="blast_results">
+        {%  autoescape false %}
+            {{text}}
+        {% endautoescape %}
     </div>
 
 </body>
