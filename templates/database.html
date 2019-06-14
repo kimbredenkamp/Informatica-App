@@ -17,29 +17,29 @@
         <p>To search our database please select which options and filters you would like to apply below.</p></div>
     <div class="search_options">
         <b>Choose an option:</b>
-        <form action="/action_page.php">
+        <form method="get">
             <select>
-                <option value="organism">All</option>
+                <option value="all">All</option>
                 <option value="organism">Organism</option>
                 <option value="protein">Protein</option>
             </select>
             <br><br><b>Enter a search term:</b><br>
             <input type="text" placeholder="..." name="search">
             <br><br><b>Select options:</b><br>
-            <input type="checkbox" name="option1" value="accession_number"><div class="tooltip">Accession number<span class="tooltiptext">A number assigned to an acquisition indicating the order of its receipt.</span></div><br>
-            <input type="checkbox" name="option2" value="bitscore"><div class="tooltip">Bitscore<span class="tooltiptext">The bit-score is the requires size of a sequence database in which the current match could be found just by chance.</span></div><br>
-            <input type="checkbox" name="option3" value="coverage"><div class="tooltip">Coverage<span class="tooltiptext">?</span></div><br>
-            <input type="checkbox" name="option4" value="discription"><div class="tooltip">Discription<span class="tooltiptext">?</span></div><br>
-            <input type="checkbox" name="option5" value="value"><div class="tooltip">E-Value<span class="tooltiptext">The number of different alignments with scores equivalent to or better than that are expected to occur by chance in a database search.(An estimate of the number of false positive results from a BLAST search.)</span></div><br>
-            <input type="checkbox" name="option6" value="header"><div class="tooltip">Header<span class="tooltiptext">?</span></div><br>
-            <input type="checkbox" name="option7" value="id"><div class="tooltip">Identity<span class="tooltiptext">The extent to which two (nucleotide or amino acid) sequences have the same residues at the same positions in an alignment.</span></div><br>
-            <input type="checkbox" name="option8" value="%id"><div class="tooltip">%Identity<span class="tooltiptext">The extent to which two (nucleotide or amino acid) sequences have the same residues at the same positions in an alignment shown in percentage.</span></div><br>
-            <input type="checkbox" name="option9" value="name"><div class="tooltip">Name<span class="tooltiptext">The scientific name of the organism or protein depending on your selection above.</span></div><br>
-            <input type="checkbox" name="option10" value="seq"><div class="tooltip">Sequence<span class="tooltiptext">The order in which amino-acids or nucleotides are arranged in protein or DNA, depending on your selection above.</span></div><br>
-            <input type="checkbox" name="option11" value="tax"><div class="tooltip">Taxonomy<span class="tooltiptext">The classification and origination of an organisms or protein, depending on your selection above.</span></div><br>
+            <input type="checkbox" name="Accessie_code" value="accession_number"><div class="tooltip">Accession number<span class="tooltiptext">A number assigned to an acquisition indicating the order of its receipt.</span></div><br>
+            <input type="checkbox" name="Bit_score" value="bitscore"><div class="tooltip">Bitscore<span class="tooltiptext">The bit-score is the requires size of a sequence database in which the current match could be found just by chance.</span></div><br>
+            <input type="checkbox" name="Query_coverage" value="coverage"><div class="tooltip">Query coverage<span class="tooltiptext">The amount of the BLAST sequence result that matches the query sequence</span></div><br>
+            <input type="checkbox" name="Description" value="discription"><div class="tooltip">Description<span class="tooltiptext">A description of the protein or organism</span></div><br>
+            <input type="checkbox" name="E_value" value="value"><div class="tooltip">E-Value<span class="tooltiptext">The number of different alignments with scores equivalent to or better than that are expected to occur by chance in a database search.(An estimate of the number of false positive results from a BLAST search.)</span></div><br>
+            <input type="checkbox" name="Header" value="header"><div class="tooltip">Header<span class="tooltiptext">The header of the sequence</span></div><br>
+            <input type="checkbox" name="Perc_identity" value="percentage_identity"><div class="tooltip">%Identity<span class="tooltiptext">The extent to which two (nucleotide or amino acid) sequences have the same residues at the same positions in an alignment shown in percentage.</span></div><br>
+            <input type="checkbox" name="Eiwit_naam" value="name"><div class="tooltip">Protein name<span class="tooltiptext">The scientific name of the organism or protein depending on your selection above.</span></div><br>
+            <input type="checkbox" name="Sequentie" value="sequence"><div class="tooltip">Sequence<span class="tooltiptext">The order in which amino-acids or nucleotides are arranged in protein or DNA, depending on your selection above.</span></div><br>
+            <input type="checkbox" name="Taxonomische_Rang" value="taxonomy"><div class="tooltip">Taxonomy<span class="tooltiptext">The classification and origination of an organisms or protein, depending on your selection above.</span></div><br>
             <br>
-            <button type="button" value="search">Search</button><br>
+            <input type="Submit">
         </form>
     </div>
+    <p>{{ text }}</p>
 </body>
 </html>
