@@ -11,7 +11,7 @@ def home():
     return render_template('home.html')
 
 
-@app.route('/database.html', methods=['GET', 'POST'])
+@app.route('/database.html', methods=['get', 'post'])
 def database():
     connection = mysql.connector.connect(
         host='hannl-hlo-bioinformatica-mysqlsrv.mysql.database.azure.com',
@@ -73,7 +73,7 @@ def database():
     return render_template('database.html', text=text)
 
 
-@app.route('/BLAST.html', methods=['GET', 'POST'])
+@app.route('/BLAST.html', methods=['get', 'post'])
 def blast():
     param_sequentie = request.args.get('search_word')
     text = 'fdsa'
