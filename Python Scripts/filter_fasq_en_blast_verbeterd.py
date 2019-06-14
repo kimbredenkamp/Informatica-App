@@ -36,9 +36,11 @@ def filter_score(reads_list):
     seq_list = []
     seqs_dict = {}
 
+    # Loops over every sequence (read 1 + read 2 each loop).
     for read in reads_list:
         for read_nr in 1, 2:
             seq_list.append(">Seq " + str(counter + 1) + " Read " + str(read_nr))
+            # Determines if the max score needed is for read 1 or read 2.
             if read_nr == 1:
                 max_score = max_score_read_1
                 avg_score = determine_fastq_score(read[2])
@@ -52,7 +54,7 @@ def filter_score(reads_list):
             else:
                 seq_list.append("-")
                 seq_list.append(0)
-
+            # The information about each sequence is stored.
             seqs_dict[counter + 1 + (read_nr / 10)] = seq_list
             seq_list = []
 
@@ -81,6 +83,7 @@ def determine_fastq_score(fastq_score):
     for score_character in fastq_score.strip():
         avg_score += dic_ascii[score_character]
 
+    # each fastq score contains 301 characters
     avg_score = round(avg_score/301, 3)
 
     return avg_score
@@ -90,17 +93,22 @@ def max_amount(seqs_dict):
     """ Filters out sequences based on the highest phred scores found."""
     seqs_left_dict = {}
     highest_scores = []
-    max_seqs = 120        # max amount of sequences
+    # max amount of sequences to BLAST
+    max_seqs = 120
     counter = 0
 
     for value in seqs_dict.values():
+        # If the seqs left contains less than the indicated max amount of sequences it just adds them.
         if len(highest_scores) < max_seqs:
             highest_scores.append(value[2])
+        # It looks through all sequences to determine if this sequence has a higher score then the lowest
+        # in the list contains the sequences with the highest scores.
         else:
-            laagste_waarde = min(highest_scores)
-            if value[2] > laagste_waarde:
-                for waarde in highest_scores:
-                    if waarde == laagste_waarde:
+            lowest_score = min(highest_scores)
+            if value[2] > lowest_score:
+                # Replaces the new score with the lowest score in the list containing the highest scores
+                for score in highest_scores:
+                    if score == lowest_score:
                         highest_scores[counter] = value[2]
                         break
                     counter += 1
@@ -108,6 +116,7 @@ def max_amount(seqs_dict):
 
     print("max amount of sequences: " + str(max_seqs))
 
+    # Makes a dictionary containing the sequences with the highest scores
     for key, value in seqs_dict.items():
         if value[2] != 0:
             if value[2] in highest_scores:
@@ -121,6 +130,7 @@ def blast_file(seqs_left_dict):
     total = 0
     file_to_blast = open('seqs_to_blast.fasta', 'w')
     for value in seqs_left_dict.values():
+        # Every sequence where the sequence isn't like '-'. This was given in the function filter_score
         if value[1] != "-":
             total += 1
             file_to_blast.write(value[0] + '\n')
@@ -144,9 +154,14 @@ def blast_sequences():
     print("-"*70)
     time_start = datetime.now()
 
+    # Loops as long as there are sequences left
     while no_seq_left is False:
-        blasting_seqs, no_seq_left = sequences_to_blast(file_to_blast, header_list, sequence_list, sequence, header,
-                                                        no_seq_left)
+        blasting_seqs, no_seq_left, file_to_blast, sequences_list, header_list = sequences_to_blast(file_to_blast,
+                                                                                                    header_list,
+                                                                                                    sequence_list,
+                                                                                                    sequence,
+                                                                                                    header,
+                                                                                                    no_seq_left)
         if blasting_seqs != "":
             print("Starting next BLASTs:")
             for headers in header_list:
@@ -170,21 +185,22 @@ def blast_sequences():
 def sequences_to_blast(file_to_blast, header_list, sequences_list, sequence, header, no_seq_left):
     """ Takes the first sequences from a fasta file."""
     blasting_seqs = ""
-    seqs_per_blast = 40             # Aantal sequenties per BLAST
+    seqs_per_blast = 40             # number of sequences per BLAST
     for _ in range(seqs_per_blast):
-        if sequence != "this was the last sequence" or header != "this was the last sequence":
-            header = next(file_to_blast, "this was the last sequence")
-            sequence = next(file_to_blast, "this was the last sequence")
+        if sequence != "last sequence" or header != "last sequence":
+            # Adds the first indicated amount of sequences used for the BLAST to a list.
+            header = next(file_to_blast, "last sequence")
+            sequence = next(file_to_blast, "last sequence")
             header_list.append(header.strip())
             sequences_list.append(sequence.strip())
             blasting_seqs = blasting_seqs + header + sequence
         else:
             break
-    blasting_seqs = blasting_seqs.replace("this was the last sequence", "")
-    if header == 'this was the last sequence' or sequence == 'this was the last sequence':
+    blasting_seqs = blasting_seqs.replace("last sequence", "")
+    if header == 'last sequence' or sequence == 'last sequence':
         no_seq_left = True
 
-    return blasting_seqs, no_seq_left
+    return blasting_seqs, no_seq_left, file_to_blast, sequences_list, header_list
 
 
 def blast(blasting_seqs, time_start):
@@ -214,17 +230,21 @@ def save_blast_results(blast_results, header_list, sequence_list, save_file, seq
     for blast_result in blast_results:
         header_result = header_list.popleft()
         sequence_result = sequence_list.popleft()
+        # Saving 'input' data.
         save_file.write("~" + header_result + "\t" + sequence_result + "\t" + str(seq_nr) + '\n')
         hit_nr = 1
 
         result_id = header_result.split(" ")
         for alignment in blast_result.alignments:
+            # Saving result id
             save_file.write("$" + result_id[1] + "." + result_id[3] + "*" + str(hit_nr) + '\n')
             save_file.write(blast_result.descriptions[hit_nr - 1].title + '\n')
             save_file.write(str(alignment.hsps[0].score) + '\n')
             save_file.write(str(alignment.hsps[0].expect) + '\n')
+            # Saving percent identity
             save_file.write(str(round((alignment.hsps[0].identities * 100) /
                                       (alignment.hsps[0].align_length - alignment.hsps[0].gaps), 2)) + '\n')
+            # Saving query coverage
             save_file.write(str(round(((alignment.hsps[0].query_end - alignment.hsps[0].query_start)
                                        / alignment.hsps[0].query_end), 3)) + '\n')
             save_file.write(alignment.accession + '\n')
