@@ -14,11 +14,12 @@
         <a href="about.html">About Us</a>
     </div>
     <div class="header_database"><h1>Welcome to our database</h1>
-        <p>To search our database please select which options and filters you would like to apply below.</p></div>
+        <p>To search our database please select which options and filters you would like to apply below.</p>
+    </div>
     <div class="search_options">
         <b>Choose an option:</b>
         <form method="get">
-            <select>
+            <select name="search_db">
                 <option value="all">All</option>
                 <option value="organism">Organism</option>
                 <option value="protein">Protein</option>
@@ -26,11 +27,11 @@
             <br><br><b>Enter a search term:</b><br>
             <input type="text" placeholder="..." name="search">
             <br><br><b>Select options:</b><br>
-            <input type="checkbox" name="Accessie_code" value="accession_number"><div class="tooltip">Accession number<span class="tooltiptext">A number assigned to an acquisition indicating the order of its receipt.</span></div><br>
+            <input type="checkbox" name="Accessiecode" value="accession_number"><div class="tooltip">Accession number<span class="tooltiptext">A number assigned to an acquisition indicating the order of its receipt.</span></div><br>
             <input type="checkbox" name="Bit_score" value="bitscore"><div class="tooltip">Bitscore<span class="tooltiptext">The bit-score is the requires size of a sequence database in which the current match could be found just by chance.</span></div><br>
             <input type="checkbox" name="Query_coverage" value="coverage"><div class="tooltip">Query coverage<span class="tooltiptext">The amount of the BLAST sequence result that matches the query sequence</span></div><br>
             <input type="checkbox" name="Description" value="discription"><div class="tooltip">Description<span class="tooltiptext">A description of the protein or organism</span></div><br>
-            <input type="checkbox" name="E_value" value="value"><div class="tooltip">E-Value<span class="tooltiptext">The number of different alignments with scores equivalent to or better than that are expected to occur by chance in a database search.(An estimate of the number of false positive results from a BLAST search.)</span></div><br>
+            <input type="checkbox" name="E_Value" value="value"><div class="tooltip">E-Value<span class="tooltiptext">The number of different alignments with scores equivalent to or better than that are expected to occur by chance in a database search.(An estimate of the number of false positive results from a BLAST search.)</span></div><br>
             <input type="checkbox" name="Header" value="header"><div class="tooltip">Header<span class="tooltiptext">The header of the sequence</span></div><br>
             <input type="checkbox" name="Perc_identity" value="percentage_identity"><div class="tooltip">%Identity<span class="tooltiptext">The extent to which two (nucleotide or amino acid) sequences have the same residues at the same positions in an alignment shown in percentage.</span></div><br>
             <input type="checkbox" name="Eiwit_naam" value="name"><div class="tooltip">Protein name<span class="tooltiptext">The scientific name of the organism or protein depending on your selection above.</span></div><br>
@@ -40,6 +41,11 @@
             <input type="Submit">
         </form>
     </div>
-    <p>{{ text }}</p>
+    <div class="results_table">
+            {%  autoescape false %}
+                {{text}}
+            {% endautoescape %}
+    </div>
+
 </body>
 </html>
