@@ -11,7 +11,7 @@ def home():
     return render_template('home.html')
 
 
-@app.route('/database.html', methods=['get', 'post'])
+@app.route('/database.html', methods=['GET', 'POST'])
 def database():
     connection = mysql.connector.connect(
         host='hannl-hlo-bioinformatica-mysqlsrv.mysql.database.azure.com',
@@ -73,14 +73,14 @@ def database():
     return render_template('database.html', text=text)
 
 
-@app.route('/BLAST.html', methods=['get', 'post'])
+@app.route('/BLAST.html', methods=['GET', 'POST'])
 def blast():
     param_sequentie = request.args.get('search_word')
     text = ''
     if param_sequentie is not None:
         try:
             result_handle = NCBIWWW.qblast("blastx", "nr", param_sequentie, matrix_name="BLOSUM62", hitlist_size=75,
-                                           expect=10, gapcosts="11 2", word_size=6, filter=True)
+                                           expect=10, gapcosts="11 1", word_size=6, filter=True)
             blast_records = NCBIXML.read(result_handle)
             for alignment in blast_records.alignments:
                 for hsp in alignment.hsps:
