@@ -16,9 +16,11 @@
     <div class="header_database"><h1>Welcome to BLAST!</h1>
         <p>To use BLAST please enter a search term.</p></div>
     <div class="search_options"><b>Enter a search term:</b><br>
-        <input type="text" placeholder="..." name="search_word">
-        <br><br>
-    <button type="button" value="search">BLAST</button>
+        <form method="get">
+            <input type="text" placeholder="..." name="search_word">
+            <br><br>
+            <input type="submit" value="BLAST">
+        </form>
     </div>
     <div class="blast_results">
             {%  autoescape false %}
